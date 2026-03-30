@@ -1,0 +1,133 @@
+/* -----------------------------------------------------
+ * GLOBAL RESET
+ * ----------------------------------------------------- */
+* {
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 14px;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    /* Removed min-height: 0; so containers stop collapsing */
+}
+
+window#waybar {
+    background: transparent;
+}
+
+/* -----------------------------------------------------
+ * OUTER PILLS (The Black OLED Shell)
+ * ----------------------------------------------------- */
+.modules-left,
+.modules-center,
+.modules-right {
+    background-color: #000000; /* Pure OLED Black */
+    border-radius: 50px;
+    padding: 6px 8px;
+    margin: 4px 6px;
+}
+
+/* -----------------------------------------------------
+ * INNER PILLS (The Secondary Layer)
+ * ----------------------------------------------------- */
+.modules-left > widget > *,
+.modules-center > widget > *,
+.modules-right > widget > * {
+    background-color: #2b2b36;
+    color: #cdd6f4;
+    border-radius: 50px;
+    padding: 2px 14px; /* Reduced vertical padding slightly to balance height */
+    margin: 0 4px;
+    min-height: 26px; /* THIS IS THE FIX: Forces every pill to be uniformly tall */
+    transition: all 0.3s ease;
+}
+
+/* -----------------------------------------------------
+ * DRAWER & GROUP DE-COMPRESSION
+ * Prevents icons/text from overlapping inside the groups
+ * ----------------------------------------------------- */
+.modules-right .group label,
+.modules-right .group > box > widget {
+    margin: 0 6px;
+}
+
+.modules-right .group label:first-child,
+.modules-right .group > box > widget:first-child {
+    margin-left: 0;
+}
+.modules-right .group label:last-child,
+.modules-right .group > box > widget:last-child {
+    margin-right: 0;
+}
+
+.modules-right .group > box > widget > * {
+    background-color: transparent;
+}
+
+/* -----------------------------------------------------
+ * HOVER EFFECTS
+ * ----------------------------------------------------- */
+.modules-left > widget > *:hover,
+.modules-center > widget > *:hover,
+.modules-right > widget > *:hover {
+    background-color: #45475a;
+}
+
+/* -----------------------------------------------------
+ * SPECIFIC COMPONENT COLORS & TWEAKS
+ * ----------------------------------------------------- */
+/* Arch Launcher */
+#custom-launcher { color: #89b4fa; font-size: 16px; }
+
+/* Paru Updater */
+#custom-paru { color: #a6e3a1; }
+
+/* Niri Workspaces */
+#workspaces button {
+    color: #a6adc8;
+    background: transparent;
+    padding: 0 6px;
+    transition: all 0.2s ease;
+}
+#workspaces button.active {
+    color: #a6e3a1;
+    font-weight: bold;
+}
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    color: #cdd6f4;
+}
+
+/* WLR Taskbar (Middle App Icons) */
+#taskbar button { background: transparent; padding: 0 6px; }
+#taskbar button.active { background-color: #45475a; border-radius: 50px; }
+#taskbar button:hover { background-color: #585b70; border-radius: 50px; }
+
+/* Idle Inhibitor (Caffeine) */
+#idle_inhibitor.activated { color: #f9e2af; }
+
+/* Privacy Indicator */
+#privacy { color: #f38ba8; }
+
+/* Wlogout Power Button */
+#custom-wlogout {
+    color: #f38ba8;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/* -----------------------------------------------------
+ * DYNAMIC HARDWARE COLORS (Warnings & Criticals)
+ * ----------------------------------------------------- */
+#cpu.warning, #memory.warning, #temperature.warning, #disk.warning, #battery.warning {
+    color: #f9e2af;
+}
+
+#cpu.critical, #memory.critical, #temperature.critical, #disk.critical, #battery.critical {
+    color: #f38ba8;
+}
+
+#battery.charging, #battery.plugged {
+    color: #a6e3a1;
+}

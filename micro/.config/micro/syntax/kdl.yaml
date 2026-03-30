@@ -1,0 +1,24 @@
+filetype: kdl
+detect:
+    filename: "\\.kdl$"
+rules:
+    # Comments (//)
+    - comment: "//.*"
+    - comment:
+        start: "/\\*"
+        end: "\\*/"
+    
+    # Strings ("example")
+    - constant.string: "\".*?\""
+    
+    # Numbers
+    - constant.number: "\\b-?[0-9.]+\\b"
+    
+    # Booleans
+    - constant.bool: "\\b(true|false)\\b"
+    
+    # Niri-specific structural keywords (Highlighted as statements)
+    - statement: "\\b(binds|window-rule|layer-rule|spawn-at-startup|layout|output|environment|animations|struts|switch-events|workspace)\\b"
+    
+    # Common Niri properties and actions (Highlighted as identifiers)
+    - identifier: "\\b(match|spawn|open-floating|default-column-width|default-window-height|fixed|proportion|app-id|title|namespace)\\b"

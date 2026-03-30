@@ -1,0 +1,76 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema_jsonc.json",
+    "logo": {
+            "source": "arch_small",
+            "type": "auto",
+            "color": {
+                "1": "blue",    // Catppuccin Mocha Blue
+                "2": "cyan"     // Catppuccin Mocha Teal
+            },
+            "padding": {
+                "top": 8,       // Increases vertical centering to match your long list
+                "left": 4,
+                "right": 6
+            }
+        },
+    "display": {
+        "separator": " ❯ ",
+        "color": {
+            "keys": "magenta"
+        }
+    },
+    "modules": [
+        "title",
+        {
+            "type": "custom",
+            "format": "----------------------------------------",
+            "outputColor": "bright_black"
+        },
+        // --- OS & SOFTWARE SECTION ---
+        {
+            "type": "custom",
+            "format": "󰣇 SYSTEM INFORMATION",
+            "outputColor": "blue"
+        },
+        { "type": "os", "key": "  󰅐 OS" },
+        { "type": "kernel", "key": "  󰒋 KERNEL" },
+        { "type": "uptime", "key": "  󰅐 UPTIME" },
+        { "type": "packages", "key": "  󰏖 PACKAGES" },
+        { "type": "shell", "key": "   SHELL" },
+        { "type": "display", "key": "  󰍹 RESOLUTION" },
+        { "type": "wm", "key": "  󱂬 WM" },
+        { "type": "theme", "key": "  󰉼 THEME" },
+        { "type": "icons", "key": "  󰀻 ICONS" },
+        { "type": "font", "key": "  󰛖 FONT" },
+        { "type": "terminal", "key": "   TERMINAL" },
+        { "type": "terminalfont", "key": "  󰛖 TERM FONT" },
+
+        "break",
+
+        // --- HARDWARE SECTION ---
+        {
+            "type": "custom",
+            "format": "󰍛 HARDWARE INFORMATION",
+            "outputColor": "yellow"
+        },
+        { "type": "host", "key": "  󰌢 MACHINE" },
+        { "type": "cpu", "key": "  󰻠 CPU", "showPeCoreCount": true },
+        { "type": "gpu", "key": "  󰢮 GPU", "format": "{2}" },
+        { "type": "memory", "key": "  󰍛 RAM" },
+        { "type": "swap", "key": "  󰓡 SWAP" },
+        { "type": "disk", "key": "  󰋊 DISK (/)", "folders": "/" },
+        { "type": "battery", "key": "  󰁹 BATTERY" },
+        { "type": "poweradapter", "key": "  󰚥 POWER" },
+        { "type": "vulkan", "key": "  󰟵 VULKAN" },
+        { "type": "opengl", "key": "  󰟵 OPENGL" },
+        { "type": "bluetooth", "key": "  󰂯 BLUETOOTH" },
+        { "type": "sound", "key": "  󰓃 AUDIO" },
+        { "type": "localip", "key": "  󰩟 LOCAL IP", "showIpv6": false },
+
+        "break",
+        {
+            "type": "colors",
+            "symbol": "circle"
+        }
+    ]
+}

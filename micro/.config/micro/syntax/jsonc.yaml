@@ -1,0 +1,25 @@
+filetype: jsonc
+detect:
+    filename: "\\.jsonc$"
+rules:
+    # Comments (// and /* */)
+    - comment: "//.*"
+    - comment:
+        start: "/\\*"
+        end: "\\*/"
+    
+    # JSON Keys ("key":)
+    - statement: "\"[^\"]+\"\\s*:"
+    
+    # JSON Strings
+    - constant.string: "\".*?\""
+    
+    # Numbers
+    - constant.number: "\\b-?[0-9.]+\\b"
+    
+    # Booleans and Null
+    - constant.bool: "\\b(true|false)\\b"
+    - constant.specialChar: "\\bnull\\b"
+    
+    # Brackets and Braces (makes them stand out slightly)
+    - symbol: "[\\[\\]\\{\\}]"
