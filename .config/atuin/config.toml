@@ -1,0 +1,39 @@
+## Atuin Config for Mayank
+
+# Use the 'compact' style to save vertical space in Niri
+style = "compact"
+
+# Which search interface to use (default: fuzzy)
+search_mode = "fuzzy"
+
+# Where the filter bar should appear (top or bottom)
+filter_mode_shell_up_key_binding = "session"
+
+# Show a preview of the command's output/details
+show_preview = true
+
+# Use the arrow keys to navigate and Enter to execute
+enter_accept = true
+
+# =========================================
+#             HISTORY SETTINGS
+# =========================================
+# Keep a massive history without slowing down
+inline_height = 10
+show_tabs = true
+show_help = false
+
+# Ignore specific commands from being saved to history
+history_filter = [
+   "^ls",
+   "^cd",
+   "^exit",
+   "^clear"
+]
+
+# =========================================
+#               SYNC SETTINGS
+# =========================================
+# If you use Atuin's free sync server
+auto_sync = true
+update_check = true
