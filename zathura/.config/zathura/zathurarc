@@ -1,0 +1,42 @@
+# --- Layout and Scrolling ---
+set scroll-step 50
+set page-padding 20
+set render-loading true
+set scroll-full-page false
+set scroll-wrap false
+ser scroll-page-aware true
+
+# This enables continuous scrolling (book view style)
+set scroll-page-aware true
+set pages-per-row 2
+set first-page-column 1
+
+set zoom-step 5
+set default-zoom 110
+set zoom-min 10
+set zoom-max 1000
+
+# --- Dark Mode & Soft Colors ---
+# This recolors the PDF pages themselves
+set recolor "true"
+
+# Dark background for the UI and "white" parts of the page
+set recolor-darkcolor "#1a1b26"
+
+# Soften the text/page color (Less white, more "paper" or "gray")
+# Use #a9b1d6 for a bluish tint, or #c0caf5 for a softer white
+set recolor-lightcolor "#c0caf5"
+set recolor-keephue "true"
+
+# --- UI Colors (Tokyo Night / Niri Style) ---
+set default-bg "#1a1b26"
+set default-fg "#c0caf5"
+set statusbar-bg "#1a1b26"
+set statusbar-fg "#c0caf5"
+set inputbar-bg "#1a1b26"
+set inputbar-fg "#7aa2f7"
+
+# --- Selection & Highlights ---
+set highlight-color "#e0af68"
+set highlight-active-color "#9ece6a"
+set selection-clipboard clipboard

@@ -3,7 +3,7 @@
  * ----------------------------------------------------- */
 * {
     font-family: "JetBrainsMono Nerd Font", sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     border: none;
     border-radius: 0;
     margin: 0;
@@ -23,7 +23,7 @@ window#waybar {
 .modules-right {
     background-color: #000000; /* Pure OLED Black */
     border-radius: 50px;
-    padding: 6px 8px;
+    padding: 6px 5px;
     margin: 4px 6px;
 }
 
@@ -86,7 +86,7 @@ window#waybar {
 #workspaces button {
     color: #a6adc8;
     background: transparent;
-    padding: 0 6px;
+    padding: 2 1px;
     transition: all 0.2s ease;
 }
 #workspaces button.active {

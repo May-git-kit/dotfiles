@@ -50,12 +50,12 @@
     //                LEFT MODULES
     // =========================================
     "custom/launcher": {
-        "format": "󰣇",
+        "format": " ",
         "on-click": "fuzzel",
         "tooltip": false
     },
     "custom/paru": {
-        "format": "{} 󰚰",
+        "format": "{}  ",
         "exec": "checkupdates 2>/dev/null | wc -l || echo '0'", // Kept on one line to avoid parsing errors
         "interval": 3600,
         "on-click": "foot -e paru -Syu"
@@ -67,13 +67,13 @@
         "on-scroll-down": "niri msg action focus-workspace-up",
         //"format-icons": { "active": "󰮯", "default": "󰊠" }
         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "active": "",
-            "default": ""
+            "1": "󰎤",
+            "2": "󰎧",
+            "3": "󰎪",
+            "4": "󰎭",
+            "5": "󰎱",
+            //"active": "",
+            //"default": ""
           },
           "sort-by-number": true,
           "all-outputs": true
@@ -125,8 +125,8 @@
         "format": "{icon}",
         "format-icons":
         {
-            "activated": "",
-            "deactivated": ""
+            "activated": "󱜤",
+            "deactivated": "󱠎"
         },
         "start-activated": false
         //"on-click": (maybe it is default on click it will toggles state)
@@ -171,7 +171,7 @@
         "modules": ["battery", "battery#power", "battery#health"]
     },
     "custom/wlogout": {
-        "format": "󰐥",
+        "format": "⏻",
         "on-click": "wlogout -b 4 -T 400 -B 400 -L 300 -R 300"
     },
 
@@ -184,15 +184,15 @@
         "tooltip": true,
         "format-icons":
         {
-            "default": "󰓅 ",
+            "default": "󰾅 ",
             "performance": "󰓅 ",
-            "balanced": "󰾆 ",
+            "balanced": "󰾅 ",
             "power-saver": "󰾆 "
         }
     },
 
     "cpu": {
-        "format": "󰍛 {usage}% ",
+        "format": "  {usage}% ",
         "interval":2,
         "tooltip":false,
         "states":
@@ -207,7 +207,7 @@
         "format": "{icon} {temperatureC}°C",
         //"warning-threshold": 75, (need to try)
         //"critical-threshold":90,
-        "format-icons": ["󰜗 ", "󰏗 ", "󰔏"],
+        "format-icons": [" ", " ", " "],
         "states":
         {
             "warning": 75,
@@ -216,7 +216,7 @@
     },
 
     "memory": {
-        "format": "  {used:0.1f}G/{total:0.1f}G  {percentage}%",
+        "format": "   {used:0.1f}G/{total:0.1f}G  {percentage}%",
         "interval":2,
         "states":
         {
@@ -228,7 +228,7 @@
     // --- Network Main & Speeds ---
     "network": {
         "format-wifi": "{icon} {frequency}",
-        "format-ethernet": "󰈀 ",
+        "format-ethernet": "󰈁",
         "format-disconnected": "󰤮 ",
         "tooltip": true,
         "tooltip-format-wifi": "{essid} {frequency}GHz Signal: {signalStrength}%",
@@ -238,12 +238,12 @@
     },
 
     "network#speed": {
-        "format": " 󰇚{bandwidthDownBytes:>3}  󰕒{bandwidthUpBytes:>3}",
+        "format": "   {bandwidthDownBytes:>3}  {bandwidthUpBytes:>3}",
         "interval": 1
     },
 
     "disk": {
-        "format": "󰋊 {percentage_used}% ",
+        "format": "  {percentage_used}% ",
         "states":
         {
             "warning": 50,
@@ -263,12 +263,12 @@
     },
     "pulseaudio": {
         "format": "{icon}  {volume}%",
-        "format-muted": "󰝟 {volume}%",
+        "format-muted": "  {volume}%",
         "format-bluetooth": "󰂰 {volume}%",
         "format-icons":
         {
-            "headphone": "󰋋",
-            "default": ["", "", ""]
+            "headphone": "󰋋 ",
+            "default": ["", " ", " "]
         },
         "scroll-step": 1,
         "on-click": "pwvucontrol",
@@ -288,7 +288,7 @@
         //"bat":" ", (The battery to monitor, as in /sys/class/power_supply/ instead of auto detect.)
         "format": "{icon} {capacity}%",
         "format-charging": "󰂄 {capacity}%",
-        "format-plugged": "󰚥 {capacity}%",
+        "format-plugged": "󱈑 {capacity}%",
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
         "states":
         {
@@ -297,11 +297,11 @@
         }
     },
     "battery#power": {
-        "format": " 󰂃 {power:.1f}W ",
+        "format": " 󱐋 {power:.1f}W ",
         "format-charging": "󰂄 {power:.1f}W"
     },
     "battery#health": {
-        "format": "󰈺 {health}%"
+        "format": "󱈏 {health}%"
     },
 
     "bluetooth": {
@@ -335,7 +335,7 @@
     "custom/gpu": {
         "exec": "gpu-usage-waybar",
         "return-type": "json",
-        "format": ": {mem_used:MiB.0}MiB 󰔏: {temperature:c}°C",
+        "format": "  {mem_used:MiB.0}MiB 󰔏: {temperature:c}°C",
         "interval": 2,
         "on-click": "foot -e amdgpu_top"
     },
@@ -348,13 +348,13 @@
     "custom/disk-read": {
         "exec": "~/.config/waybar/scripts/disk-io.sh read",
         "interval": 2,
-        "format": "󰇚 {}/s",
+        "format": "󱧰  {}/s",
         "tooltip": false
     },
     "custom/disk-write": {
         "exec": "~/.config/waybar/scripts/disk-io.sh write",
         "interval": 2,
-        "format": "󰕒 {}/s",
+        "format": "󱧨  {}/s",
         "tooltip": false
     }
 }
