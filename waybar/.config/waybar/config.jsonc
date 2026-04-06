@@ -21,17 +21,14 @@
     "modules-left": [
         "custom/launcher",
         "custom/paru",
-        "niri/workspaces",
+        "group/work-idle",
         "clock"
         //"startup-time"
     ],
 
     "modules-center": [
         "wlr/taskbar",
-        "privacy",
-        "idle_inhibitor"
-        //"custom/notes"
-        //"niri/window (shows the title of currently focused windows in niri)
+        "privacy"
     ],
 
     "modules-right": [
@@ -60,6 +57,11 @@
         "interval": 3600,
         "on-click": "foot -e paru -Syu"
     },
+    "group/work-idle": {
+            "orientation": "horizontal",
+            "drawer": { "transition-duration": 400, "transition-left-to-right": true },
+            "modules": ["niri/workspaces", "idle_inhibitor"]
+    },
     "niri/workspaces": {
         "format": "{icon}",
         "on-click": "activate",
@@ -78,6 +80,17 @@
           "sort-by-number": true,
           "all-outputs": true
     },
+    "idle_inhibitor": {
+            "format": "{icon}",
+            "format-icons":
+            {
+                "activated": " 󱜤 ",
+                "deactivated": " 󱠎 "
+            },
+            "start-activated": false
+            //"on-click": (maybe it is default on click it will toggles state)
+    },
+
     "clock": {
         "format": "{:%I:%M %p %d %b}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
@@ -92,7 +105,7 @@
     // =========================================
     "wlr/taskbar": {
         "format": "{icon}",
-        "icon-size": 18,
+        "icon-size": 20,
         "icon-theme": "Papirus",
         "tooltip-format": "{title}",
         "on-click": "activate",
@@ -102,7 +115,7 @@
     },
     "privacy": {
         "icon-spacing": 3,
-        "icon-size": 14,
+        "icon-size": 16,
         "modules": [
             {
                 "type": "screenshare",
@@ -121,16 +134,7 @@
             }
         ]
     },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons":
-        {
-            "activated": "󱜤",
-            "deactivated": "󱠎"
-        },
-        "start-activated": false
-        //"on-click": (maybe it is default on click it will toggles state)
-    },
+
 
     // =========================================
     //               RIGHT MODULES
@@ -262,7 +266,7 @@
         "scroll-step": 1
     },
     "pulseaudio": {
-        "format": "{icon}  {volume}%",
+        "format": "{icon} {volume}%",
         "format-muted": "  {volume}%",
         "format-bluetooth": "󰂰 {volume}%",
         "format-icons":
