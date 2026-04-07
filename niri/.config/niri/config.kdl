@@ -351,6 +351,12 @@ window-rule {
     // Optional: Center it on the screen
     //exclude-from-layout true
 }
+window-rule {
+    match app-id="floating-notes"
+    open-floating true
+    default-column-width { fixed 1000; }
+    default-window-height {fixed 500; }
+}
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {

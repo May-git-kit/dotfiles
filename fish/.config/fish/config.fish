@@ -7,6 +7,7 @@ if status is-interactive
     set -gx VISUAL micro
     set -gx BROWSER zen-browser
     set -gx TERMINAL foot
+    set -Ua fish_user_paths $HOME/.cargo/bin
 
     # --- Modern Replacements (from your script) ---
     # eza -> ls
@@ -62,11 +63,11 @@ if status is-interactive
 
     #abbreviations
     # eza
-    abbr -a l   eza --icons
-    abbr -a ls  eza --icons --group-directories-first
-    abbr -a ll  eza -lh --icons --group-directories-first
-    abbr -a la  eza -a --icons --group-directories-first
-    abbr -a lt  eza --tree --icons
+    #abbr -a l   eza --icons
+    #abbr -a ls  eza --icons --group-directories-first
+    #abbr -a ll  eza -lh --icons --group-directories-first
+    #abbr -a la  eza -a --icons --group-directories-first
+   # abbr -a lt  eza --tree --icons
 
     #yazi
     abbr -a y yazi
@@ -100,6 +101,9 @@ if status is-interactive
     abbr -a vi   nvim
     abbr -a vim  nvim
     abbr -a m    micro
+
+    #Custom
+    abbr -a cl clear
 
     # --- Utilities ---
     # Fastfetch on startup (optional)

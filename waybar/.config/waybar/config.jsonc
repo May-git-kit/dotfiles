@@ -21,8 +21,8 @@
     "modules-left": [
         "custom/launcher",
         "custom/paru",
-        "group/work-idle",
-        "clock"
+        "group/workspace-idle",
+        "group/clock-notes"
         //"startup-time"
     ],
 
@@ -47,23 +47,23 @@
     //                LEFT MODULES
     // =========================================
     "custom/launcher": {
-        "format": " ",
+        "format": "<span size='130%'> </span>",
         "on-click": "fuzzel",
         "tooltip": false
     },
     "custom/paru": {
-        "format": "{}  ",
+        "format": "{}<span size='130%'>  </span>",
         "exec": "checkupdates 2>/dev/null | wc -l || echo '0'", // Kept on one line to avoid parsing errors
         "interval": 3600,
         "on-click": "foot -e paru -Syu"
     },
-    "group/work-idle": {
+    "group/workspace-idle": {
             "orientation": "horizontal",
             "drawer": { "transition-duration": 400, "transition-left-to-right": true },
             "modules": ["niri/workspaces", "idle_inhibitor"]
     },
     "niri/workspaces": {
-        "format": "{icon}",
+        "format": "<span size='140%'>{icon}</span>",
         "on-click": "activate",
         "on-scroll-up": "niri msg action focus-workspace-down",
         "on-scroll-down": "niri msg action focus-workspace-up",
@@ -81,7 +81,7 @@
           "all-outputs": true
     },
     "idle_inhibitor": {
-            "format": "{icon}",
+            "format": "<span size='140%'>{icon}</span>",
             "format-icons":
             {
                 "activated": " 󱜤 ",
@@ -90,7 +90,11 @@
             "start-activated": false
             //"on-click": (maybe it is default on click it will toggles state)
     },
-
+    "group/clock-notes": {
+                "orientation": "horizontal",
+                "drawer": { "transition-duration": 400, "transition-left-to-right": true },
+                "modules": ["clock", "custom/notes"]
+},
     "clock": {
         "format": "{:%I:%M %p %d %b}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
@@ -98,6 +102,11 @@
             "mode": "month",
             "format": { "months": "<span color='#cdd6f4'><b>{}</b></span>", "days": "<span color='#a6adc8'>{}</span>", "today": "<span color='#f38ba8'><b><u>{}</u></b></span>" }
         }
+    },
+    "custom/notes": {
+        "format": " <span size='140%'>  </span>",
+        "on-click": "foot --app-id='floating-notes' -e micro ~/todo.md",
+        "tooltip": false
     },
 
     // =========================================
@@ -175,7 +184,7 @@
         "modules": ["battery", "battery#power", "battery#health"]
     },
     "custom/wlogout": {
-        "format": "⏻",
+        "format": "<span size='140%'>⏻</span>",
         "on-click": "wlogout -b 4 -T 400 -B 400 -L 300 -R 300"
     },
 
@@ -183,7 +192,7 @@
     //            STANDARD METRICS
     // =========================================
     "power-profiles-daemon": {
-        "format": "{icon}",
+        "format": "<span size='140%'>{icon}</span>",
         "tooltip-format": "Profile: {profile}\nDriver: {driver}",
         "tooltip": true,
         "format-icons":
@@ -196,7 +205,7 @@
     },
 
     "cpu": {
-        "format": "  {usage}% ",
+        "format": "<span size='140%'> </span> {usage}% ",
         "interval":2,
         "tooltip":false,
         "states":
@@ -208,7 +217,7 @@
 
     "temperature": {
         //"thermal-zone": , (go to tempearature in waybar wiki to find zone)
-        "format": "{icon} {temperatureC}°C",
+        "format": "<span size='130%'>{icon}</span> {temperatureC}°C",
         //"warning-threshold": 75, (need to try)
         //"critical-threshold":90,
         "format-icons": [" ", " ", " "],
@@ -220,7 +229,7 @@
     },
 
     "memory": {
-        "format": "   {used:0.1f}G/{total:0.1f}G  {percentage}%",
+        "format": "<span size='130%'>  </span> {used:0.1f}G/{total:0.1f}G<span size='140%'> 󱨂</span> {percentage}%",
         "interval":2,
         "states":
         {
@@ -231,8 +240,8 @@
 
     // --- Network Main & Speeds ---
     "network": {
-        "format-wifi": "{icon} {frequency}",
-        "format-ethernet": "󰈁",
+        "format-wifi": "<span size='140%'>{icon}</span> {frequency}",
+        "format-ethernet": "<span size='150%'>󰈁</span>",
         "format-disconnected": "󰤮 ",
         "tooltip": true,
         "tooltip-format-wifi": "{essid} {frequency}GHz Signal: {signalStrength}%",
@@ -242,12 +251,12 @@
     },
 
     "network#speed": {
-        "format": "   {bandwidthDownBytes:>3}  {bandwidthUpBytes:>3}",
+        "format": "  <span size='140%'> </span>{bandwidthDownBytes:>3} <span size='140%'> </span>{bandwidthUpBytes:>3}",
         "interval": 1
     },
 
     "disk": {
-        "format": "  {percentage_used}% ",
+        "format": "<span size='140%'> </span> {percentage_used}% ",
         "states":
         {
             "warning": 50,
@@ -261,12 +270,12 @@
 
     // --- Brightness & Audio ---
     "backlight": {
-        "format": "{icon} {percent}%",
+        "format": "<span size='140%'>{icon}</span> {percent}%",
         "format-icons": ["󰃞 ", "󰃟 ", "󰃠 "],
         "scroll-step": 1
     },
     "pulseaudio": {
-        "format": "{icon} {volume}%",
+        "format": "<span size='140%'>{icon}</span> {volume}%",
         "format-muted": "  {volume}%",
         "format-bluetooth": "󰂰 {volume}%",
         "format-icons":
@@ -282,17 +291,17 @@
     },
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "format-source": "  {volume}%",
-        "format-source-muted":  "",
+        "format-source": "<span size='140%'> </span> {volume}%",
+        "format-source-muted":  "<span size='140%'></span>",
         "scroll-step":1
     },
 
     // --- Battery Info ---
     "battery": {
         //"bat":" ", (The battery to monitor, as in /sys/class/power_supply/ instead of auto detect.)
-        "format": "{icon} {capacity}%",
-        "format-charging": "󰂄 {capacity}%",
-        "format-plugged": "󱈑 {capacity}%",
+        "format": "<span size='140%'>{icon}</span> {capacity}%",
+        "format-charging": "<span size='140%'>󰂄</span> {capacity}%",
+        "format-plugged": "<span size='140%'>󱈑</span> {capacity}%",
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
         "states":
         {
@@ -301,18 +310,18 @@
         }
     },
     "battery#power": {
-        "format": " 󱐋 {power:.1f}W ",
-        "format-charging": "󰂄 {power:.1f}W"
+        "format": " <span size='140%'>󱐋</span> {power:.1f}W ",
+        "format-charging": "<span size='140%'>󰂄</span> {power:.1f}W"
     },
     "battery#health": {
-        "format": "󱈏 {health}%"
+        "format": "<span size='140%'>󱈏</span> {health}%"
     },
 
     "bluetooth": {
-        "format": "󰂯",
-        "format-disabled": "󰂲",
-        "format-connected": "󰂱 {device_alias}",
-        "format-connected-battery": "󰂱 {device_alias} 󰥉 {device_battery_percentage}%",
+        "format": "<span size='140%'>󰂯</span>",
+        "format-disabled": "<span size='140%'>󰂲",
+        "format-connected": "<span size='140%'>󰂱 {device_alias}",
+        "format-connected-battery": "<span size='140%'>󰂱 {device_alias}<span size='140%'> 󰥉 {device_battery_percentage}%",
         "tooltip": true,
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
         "on-click": "overskride"
