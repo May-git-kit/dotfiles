@@ -19,7 +19,11 @@ window#waybar {
  * OUTER PILLS (The Black OLED Shell)
  * ----------------------------------------------------- */
 .modules-left,
-.modules-center,
+.modules-center {
+    background-color: transparent; /* Makes the "shell" invisible */
+    padding: 0;
+    margin: 0;
+}
 .modules-right {
     background-color: #000000; /* Pure OLED Black */
     border-radius: 50px;
@@ -100,9 +104,32 @@ window#waybar {
 }
 
 /* WLR Taskbar (Middle App Icons) */
-#taskbar button { background: transparent; padding: 0 6px; }
-#taskbar button.active { background-color: #45475a; border-radius: 50px; }
-#taskbar button:hover { background-color: #585b70; border-radius: 50px; }
+#taskbar button {
+    background: transparent; /* No background pill */
+    padding: 0 10px;          /* Space between icons */
+    margin: 0;
+    border-radius: 0;
+    min-height: 0;            /* Allow it to shrink */
+    transition: all 0.3s ease;
+}
+
+/* --- 3. Make Icons Bigger --- */
+#taskbar button image {
+    margin: 4px 0;
+    /* This scales the actual icon. Adjust the scale or use min-width/height */
+    -gtk-icon-transform: scale(1.4);
+}
+
+/* --- 4. Active/Hover State --- */
+/* Instead of a pill, maybe a subtle glow or color change */
+#taskbar button.active {
+    background-color: rgba(255, 255, 255, 0.1); /* Very faint highlight */
+    border-radius: 12px;
+}
+
+#taskbar button:hover {
+    -gtk-icon-transform: scale(1.6); /* Pop effect on hover */
+}
 
 /* Idle Inhibitor (Caffeine) */
 #idle_inhibitor.activated { color: #f9e2af; }

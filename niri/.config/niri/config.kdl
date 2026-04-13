@@ -354,7 +354,7 @@ window-rule {
 window-rule {
     match app-id="floating-notes"
     open-floating true
-    default-column-width { fixed 1000; }
+    default-column-width { fixed 700; }
     default-window-height {fixed 500; }
 }
 // Example: block out two password managers from screen capture.
@@ -394,6 +394,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+Space hotkey-overlay-title="Run an Application: ghostty" { spawn "ghostty"; }
     Mod+E hotkey-overlay-title="Run an Application: nautilus" { spawn "nautilus"; }
     Mod+B hotkey-overlay-title="Run an Application: zen-browser" { spawn "zen-browser"; }
 	Mod+X hotkey-overlay-title="Run an Application: wlogout" { spawn "wlogout" "-b" "4" "-T" "400" "-B" "400" "-L" "300" "-R" "300"; }

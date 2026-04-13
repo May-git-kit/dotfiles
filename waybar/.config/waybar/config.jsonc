@@ -19,15 +19,13 @@
     // "on-sigusr1": "toggle",
 
     "modules-left": [
-        "custom/launcher",
-        "custom/paru",
+        "group/launcher-paru",
         "group/workspace-idle",
-        "group/clock-notes"
-        //"startup-time"
+        "group/clock-notes"//startup-time
     ],
 
     "modules-center": [
-        "wlr/taskbar",
+        "wlr/taskbar",//pinned apps
         "privacy"
     ],
 
@@ -38,7 +36,7 @@
         "group/nvme",
         "group/network-speed",
         "bluetooth",
-        "group/backlight-nightlight-volume",
+        "group/backlight-nightlight-volume",//nightlight slider
         "group/battery-power",
         "custom/wlogout"
     ],
@@ -46,13 +44,18 @@
     // =========================================
     //                LEFT MODULES
     // =========================================
+"group/launcher-paru": {
+            "orientation": "horizontal",
+            "drawer": { "transition-duration": 400, "transition-left-to-right": true },
+            "modules": ["custom/launcher", "custom/paru"]
+    },
     "custom/launcher": {
         "format": "<span size='130%'> </span>",
         "on-click": "fuzzel",
         "tooltip": false
     },
     "custom/paru": {
-        "format": "{}<span size='130%'>  </span>",
+        "format": "<span size='130%'>   </span>{}",
         "exec": "checkupdates 2>/dev/null | wc -l || echo '0'", // Kept on one line to avoid parsing errors
         "interval": 3600,
         "on-click": "foot -e paru -Syu"
@@ -114,7 +117,7 @@
     // =========================================
     "wlr/taskbar": {
         "format": "{icon}",
-        "icon-size": 20,
+        "icon-size": 24,
         "icon-theme": "Papirus",
         "tooltip-format": "{title}",
         "on-click": "activate",
