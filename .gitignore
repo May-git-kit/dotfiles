@@ -1,0 +1,11 @@
+*.log
+backups/
+buffers/
+syntax/
+completions/
+conf.d/
+functions/
+tmp_files/
+clipboard_history.json
+fish_*
+nvim/

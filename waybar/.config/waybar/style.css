@@ -1,0 +1,162 @@
+/* -----------------------------------------------------
+ * GLOBAL RESET
+ * ----------------------------------------------------- */
+* {
+    font-family: "JetBrainsMono Nerd Font Propo", sans-serif;
+    font-size: 15px;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    /* Removed min-height: 0; so containers stop collapsing */
+}
+
+window#waybar {
+    background: transparent;
+}
+
+/* -----------------------------------------------------
+ * OUTER PILLS (The Black OLED Shell)
+ * ----------------------------------------------------- */
+/*.modules-left,
+.modules-center,
+.modules-right {
+    background-color: transparent;
+    border: 0px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 0px;
+    margin: 2px;
+}
+*/
+/* -----------------------------------------------------
+ * INNER PILLS (The Secondary Layer)
+ * ----------------------------------------------------- */
+.modules-left > widget > * {
+    background-color: transparent;
+    color: #cdd6f4;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 10px;
+    padding: 6px 12px;
+    margin: 6px 5px;
+    transition: all 0.4s ease;
+}
+.modules-right > widget > * {
+    background-color: transparent;
+    color: #cdd6f4;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 10px;
+    padding: 6px 12px;
+    margin: 6px 5px;
+    transition: all 0.4s ease;
+}
+.modules-center > widget > * {
+    background-color: transparent;
+    color: #cdd6f4;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 0px 0px; /* Reduced vertical padding slightly to balance height */
+    margin: 0px 0px;
+    transition: all 0.2s ease;
+}
+
+/* -----------------------------------------------------
+ * HOVER EFFECTS
+ * ----------------------------------------------------- */
+/*.modules-left > widget > *:hover,
+.modules-center > widget > *:hover,
+.modules-right > widget > *:hover {
+    background-color: transparent;
+}
+*/
+/* -----------------------------------------------------
+ * SPECIFIC COMPONENT COLORS & TWEAKS
+ * ----------------------------------------------------- */
+/* Arch Launcher */
+#custom-launcher {
+    color: #89b4fa;
+    padding-left:5px;
+    padding-right:0px;
+}
+
+/* Paru Updater */
+#custom-paru { color: pink; font-size: 17px; font-weight:500; }
+
+/* Niri Workspaces */
+#workspaces button {
+    color: #a6adc8;
+    background: transparent;
+    padding: 0px 0px;
+    transition: all 0.2s ease;
+}
+#workspaces button.active {
+    color: pink;
+    font-weight: 900;
+}
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    color: #cdd6f4;
+}
+#clock { font-weight: 700;}
+
+/* WLR Taskbar (Middle App Icons) */
+#taskbar button {
+    background: transparent; /* No background pill */
+    padding: 0px 14px;          /* Space between icons */
+    margin: 0px;
+    border-radius: 0;
+    min-height: 0;            /* Allow it to shrink */
+    transition: all 0.3s ease;
+}
+
+/* --- 3. Make Icons Bigger --- */
+#taskbar button image {
+    margin: 0px 3px;
+    /* This scales the actual icon. Adjust the scale or use min-width/height */
+    -gtk-icon-transform: scale(2.2);
+}
+
+/* --- 4. Active/Hover State --- */
+/* Instead of a pill, maybe a subtle glow or color change */
+#taskbar button.active {
+    background-color: rgba(255, 255, 255, 0.25); /* Very faint highlight */
+    border-radius: 6px;
+}
+
+#taskbar button :hover {
+    -gtk-icon-transform: scale(3);
+    /* Pop effect on hover */
+}
+
+/* Idle Inhibitor (Caffeine) */
+#idle_inhibitor.activated { color: pink; }
+
+/* Privacy Indicator */
+#privacy { color: #f38ba8; }
+
+/* Wlogout Power Button */
+#custom-wlogout {
+    color: #f38ba8;
+    padding-left: 17px;
+    padding-right: 21px;
+    margin-right: 5px;
+}
+
+/* -----------------------------------------------------
+ * DYNAMIC HARDWARE COLORS (Warnings & Criticals)
+ * ----------------------------------------------------- */
+#cpu.warning, #memory.warning, #temperature.warning, #disk.warning, #battery.warning {
+    color: #f9e2af;
+}
+
+#cpu.critical, #memory.critical, #temperature.critical, #disk.critical, #battery.critical {
+    color: #f38ba8;
+}
+
+#battery.charging, #battery.plugged {
+    color: #a6e3a1;
+}
+/*#cpu,#memory,#temperature,#disk,#battery{
+    font-size:16px;
+    font-weight:600;
+}*/

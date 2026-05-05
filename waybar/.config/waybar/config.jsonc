@@ -1,0 +1,394 @@
+{
+    "layer": "top", //can be top or bottom
+    "position": "top",
+    "height": 36,
+    "width": 1920,
+
+    "spacing": 0, //gap between modules
+    "margin-top": 2,
+    "margin-left": 4,
+    "margin-right": 4,
+
+    "start_hidden": false,
+    "modifier-reset": "press",
+    "exclusive": true, //false if no dedicated space required for waybar
+    "passthrough": false, //gives option to use window beneath waybar in overlay like situations
+    "fixed-center": true,
+    "ipc": true,
+    "reload_style_on_change": true,
+    // "on-sigusr1": "toggle",
+
+    "modules-left": [
+        "group/launcher-paru",
+        "group/workspace-idle",
+        "group/clock-notes"//startup-time
+    ],
+
+    "modules-center": [
+        "wlr/taskbar",//pinned apps
+        "privacy"
+    ],
+
+    "modules-right": [
+        "group/ppd-scx",
+        "group/amd-cpu-temp-ram",
+        "group/amd-gpu-vram-temp",
+        "group/nvme",
+        "group/network-speed",
+        "bluetooth",
+        "group/backlight-nightlight-volume",//nightlight slider
+        "group/battery-power",
+        "custom/wlogout"
+    ],
+
+    // =========================================
+    //                LEFT MODULES
+    // =========================================
+"group/launcher-paru": {
+            "orientation": "horizontal",
+            "drawer": { "transition-duration": 400, "transition-left-to-right": true },
+            "modules": ["custom/launcher", "custom/paru"]
+    },
+    "custom/launcher": {
+        "format": "<span size='130%'> </span>",
+        "on-click": "fuzzel",
+        "tooltip": false
+    },
+    "custom/paru": {
+        "format": "<span size='130%'>   </span>{}",
+        "exec": "checkupdates 2>/dev/null | wc -l || echo '0'", // Kept on one line to avoid parsing errors
+        "interval": 3600,
+        "on-click": "foot -e paru -Syu",
+        "tooltip": false
+    },
+    "group/workspace-idle": {
+            "orientation": "horizontal",
+            "drawer": { "transition-duration": 400, "transition-left-to-right": true },
+            "modules": ["niri/workspaces", "idle_inhibitor"]
+    },
+    "niri/workspaces": {
+        "format": "<span size='160%'>{icon}</span>",
+        "on-click": "activate",
+        "on-scroll-up": "niri msg action focus-workspace-down",
+        "on-scroll-down": "niri msg action focus-workspace-up",
+        //"format-icons": { "active": "󰮯", "default": "󰊠" }
+        "format-icons": {
+            "1": "󰎤",
+            "2": "󰎧",
+            "3": "󰎪",
+            "4": "󰎭",
+            "5": "󰎱",
+            //"active": "",
+            //"default": ""
+          },
+          "sort-by-number": true,
+          "all-outputs": true
+    },
+    "idle_inhibitor": {
+            "format": "<span size='145%'>{icon}</span>",
+            "format-icons":
+            {
+                "activated": " 󱜤 ",
+                "deactivated": " 󱠎 "
+            },
+            "start-activated": false
+            //"on-click": (maybe it is default on click it will toggles state)
+    },
+    "group/clock-notes": {
+                "orientation": "horizontal",
+                "drawer": { "transition-duration": 400, "transition-left-to-right": true },
+                "modules": ["clock", "custom/notes"]
+},
+    "clock": {
+        "format": "{:%I:%M %p %d %b}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "format": { "months": "<span color='#cdd6f4'><b>{}</b></span>", "days": "<span color='#a6adc8'>{}</span>", "today": "<span color='#f38ba8'><b><u>{}</u></b></span>" }
+        }
+    },
+    "custom/notes": {
+        "format": " <span size='145%'>  </span>",
+        "on-click": "foot --app-id='floating-notes' -e micro ~/todo.md",
+        "tooltip": false
+    },
+
+    // =========================================
+    //               MIDDLE MODULES
+    // =========================================
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 24
+
+        ,
+        "icon-theme": "Papirus",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "on-click-right": "close",
+        "ignore-list": [ "fuzzel", "waybar" ]
+    },
+    "privacy": {
+        "icon-spacing": 3,
+        "icon-size": 16,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true,
+                "tooltip-icon-size": 14
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true,
+                "tooltip-icon-size": 14
+            },
+            {
+                "type": "location",
+                "tooltip": true,
+                "tooltip-icon-size": 14
+            }
+        ]
+    },
+
+
+    // =========================================
+    //               RIGHT MODULES
+    // =========================================
+    "group/ppd-scx": {
+        "orientation": "horizontal",
+        "drawer": { "transition-duration": 400, "transition-left-to-right": true },
+        "modules": ["power-profiles-daemon", "custom/scx"]
+    },
+    "group/amd-cpu-temp-ram": {
+        "orientation": "horizontal",//can be vertical
+        "drawer": { "transition-duration": 400, "transition-left-to-right": true },
+        "modules": ["cpu", "temperature", "memory"]
+    },
+    "group/amd-gpu-vram-temp": {
+        "orientation": "horizontal",//can be vertical
+        "drawer": { "transition-duration": 400, "transition-left-to-right": true },
+        "modules": ["custom/gpu-icon","custom/gpu"]
+    },
+    "group/network-speed": {
+        "orientation": "horizontal",
+        "drawer": { "transition-duration": 400, "transition-left-to-right": true },
+        "modules": ["network", "network#speed"]
+    },
+    "group/nvme": {
+        "orientation": "horizontal",
+        "drawer": { "transition-duration": 400, "transition-left-to-right": true },
+        "modules": ["disk","disk#vol", "custom/nvme-health", "custom/disk-read", "custom/disk-write"]
+    },
+    "group/backlight-nightlight-volume": {
+        "orientation": "horizontal",
+        "drawer": { "transition-duration": 400, "transition-left-to-right": true },
+        "modules": ["backlight", "pulseaudio", "pulseaudio#microphone"]
+    },
+    "group/battery-power": {
+        "orientation": "horizontal",
+        "drawer": { "transition-duration": 400, "transition-left-to-right": true },
+        "modules": ["battery", "battery#power", "battery#health"]
+    },
+    "custom/wlogout": {
+        "format": "<span size='140%'>⏻</span>",
+        "on-click": "wlogout -b 4 -T 400 -B 400 -L 300 -R 300",
+        "tooltip":false
+    },
+
+    // =========================================
+    //            STANDARD METRICS
+    // =========================================
+    "power-profiles-daemon": {
+        "format": "<span size='140%'>{icon}</span>",
+        "tooltip-format": "Profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons":
+        {
+            "default": "󰾅 ",
+            "performance": "󰓅 ",
+            "balanced": "󰾅 ",
+            "power-saver": "󰾆 "
+        }
+    },
+
+    "cpu": {
+        "format": "<span size='140%'> </span> {usage}% ",
+        "interval":2,
+        "tooltip":false,
+        "states":
+        {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+
+    "temperature": {
+        //"thermal-zone": , (go to tempearature in waybar wiki to find zone)
+        "format": "<span size='140%'>{icon}</span> {temperatureC}°C",
+        //"warning-threshold": 75, (need to try)
+        //"critical-threshold":90,
+        "format-icons": [" ", " ", " "],
+        "states":
+        {
+            "warning": 75,
+            "critical": 85
+        }
+    },
+
+    "memory": {
+        "format": "<span size='140%'>  </span> {used:0.1f}G/{total:0.1f}G<span size='150%'> 󱨂</span> {percentage}%",
+        "interval":2,
+        "states":
+        {
+            "warning": 70,
+            "critical": 90
+        },
+        "tooltip": false
+    },
+
+    // --- Network Main & Speeds ---
+    "network": {
+        "format-wifi": "<span size='150%'>{icon}</span> {frequency}",
+        "format-ethernet": "<span size='150%'>󰈁</span>",
+        "format-disconnected": "󰤮 ",
+        "tooltip": true,
+        "tooltip-format-wifi": "{essid} {frequency}GHz Signal: {signalStrength}%",
+        "max-length": 30,
+        "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "]
+        //"on-click": "foot -e impala"
+    },
+
+    "network#speed": {
+        "format": "  <span size='140%'> </span>{bandwidthDownBytes:>3} <span size='140%'> </span>{bandwidthUpBytes:>3}",
+        "interval": 1,
+        "tooltip": false
+    },
+
+    "disk": {
+        "format": "<span size='150%'> </span>",
+        "states":
+        {
+            "warning": 50,
+            "critical": 80
+        },
+        "path": "/",
+        "unit":"GiB",
+        "tooltip": true,
+        "tooltip-format": "{specific_free:0.2f} GB out of {specific_total:0.2f} GB available."
+    },
+    "disk#vol": {
+            "format": " {percentage_used}%",
+            "states":
+            {
+                "warning": 50,
+                "critical": 80
+            },
+            "path": "/",
+            "unit":"GiB",
+            "tooltip": true,
+            "tooltip-format": "{specific_free:0.2f} GB out of {specific_total:0.2f} GB available."
+        },
+
+    // --- Brightness & Audio ---
+    "backlight": {
+        "format": "<span size='140%'>{icon}</span> {percent}%",
+        "format-icons": ["󰃞 ", "󰃟 ", "󰃠 "],
+        "scroll-step": 1
+    },
+    "pulseaudio": {
+        "format": "<span size='140%'>{icon}</span> {volume}%",
+        "format-muted": "  {volume}%",
+        "format-bluetooth": "󰂰 {volume}%",
+        "format-icons":
+        {
+            "headphone": "󰋋 ",
+            "default": ["", " ", " "]
+        },
+        "scroll-step": 1,
+        "on-click": "pwvucontrol",
+        "max-volume": 95,
+        "tooltip":true,
+        "tooltip-format": "{desc}"
+    },
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "<span size='140%'> </span> {volume}%",
+        "format-source-muted":  "<span size='140%'></span>",
+        "scroll-step":1
+    },
+
+    // --- Battery Info ---
+    "battery": {
+        //"bat":" ", (The battery to monitor, as in /sys/class/power_supply/ instead of auto detect.)
+        "format": "<span size='150%'>{icon}</span> {capacity}%",
+        "format-charging": "<span size='150%'>󰂄</span> {capacity}%",
+        "format-plugged": "<span size='160%'>󱈑</span> {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "states":
+        {
+            "warning": 30,
+            "critical": 15
+        }
+    },
+    "battery#power": {
+        "format": " <span size='160%'>󱐋</span> {power:.1f}W ",
+        "format-charging": "<span size='150%'>󰂄</span> {power:.1f}W"
+    },
+    "battery#health": {
+        "format": "<span size='150%'>󱈏</span> {health}%"
+    },
+
+    "bluetooth": {
+        "format": "<span size='150%'>󰂯</span>",
+        "format-disabled": "<span size='150%'>󰂲",
+        "format-connected": "<span size='150%'>󰂱 {device_alias}",
+        "format-connected-battery": "<span size='150%'>󰂱 {device_alias}<span size='150%'> 󰥉 {device_battery_percentage}%",
+        "tooltip": true,
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "on-click": "overskride"
+    },
+
+    // =========================================
+    //            CUSTOM MODULES
+    // =========================================
+    "custom/scx": {
+        "exec": "~/.config/waybar/scripts/scx-status.sh",
+        "return-type": "json",
+        "interval": 2,
+        "on-click": "~/.config/waybar/scripts/scx-cycle.sh",
+        "on-click-right": "scxctl restart",
+        "format": " {} "
+    },
+    "custom/gpu-icon": {
+        "exec": "gpu-usage-waybar",
+        "return-type": "json",
+        "format": "󰢮 {gpu_utilization}%",
+        "interval": 2,
+        "on-click": "foot -e amdgpu_top"
+    },
+    "custom/gpu": {
+        "exec": "gpu-usage-waybar",
+        "return-type": "json",
+        "format": "  {mem_used:MiB.0}MiB 󰔏: {temperature:c}°C",
+        "interval": 2,
+        "on-click": "foot -e amdgpu_top"
+    },
+    "custom/nvme-health": {
+        "exec": "~/.config/waybar/scripts/nvme-health.sh",
+        "interval": 3600, // Checks once an hour to save resources
+        "format": "󰈺 {}%",
+        "tooltip": false
+    },
+    "custom/disk-read": {
+        "exec": "~/.config/waybar/scripts/disk-io.sh read",
+        "interval": 2,
+        "format": "󱧰  {}/s",
+        "tooltip": false
+    },
+    "custom/disk-write": {
+        "exec": "~/.config/waybar/scripts/disk-io.sh write",
+        "interval": 2,
+        "format": "󱧨  {}/s",
+        "tooltip": false
+    }
+}

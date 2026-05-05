@@ -1,0 +1,190 @@
+# Top-level window configuration
+position = "top"
+anchor_to_edges = true
+height = 30
+
+# =========================================
+#                LEFT MODULES
+# =========================================
+
+# 1. custom/launcher
+[[start]]
+type = "script"
+mode = "poll"
+interval = 86400000
+cmd = "echo ' 󰣇 '"
+on_click_left = "fuzzel"
+
+# 2. custom/paru
+[[start]]
+type = "script"
+mode = "poll"
+interval = 3600000
+cmd = "updates=$(checkupdates 2>/dev/null | wc -l); echo \"${updates:-0} 󰚰\""
+on_click_left = "foot -e paru -Syu"
+
+# 3. niri/workspaces
+[[start]]
+type = "workspaces"
+
+# 4. clock
+[[start]]
+type = "clock"
+format = "%I:%M %p  %d %b"
+
+
+# =========================================
+#               MIDDLE MODULES
+# =========================================
+
+# 5. wlr/taskbar
+[[center]]
+type = "launcher"
+show_names = false
+show_icons = true
+icon_size = 18
+favorites = []
+
+# 6. idle_inhibitor (Mocked via script, requires wayland-idle-inhibitor daemon)
+[[center]]
+type = "script"
+mode = "poll"
+interval = 2000
+cmd = "pidof wayland-idle-inhibitor >/dev/null && echo '  ' || echo '  '"
+on_click_left = "killall wayland-idle-inhibitor || wayland-idle-inhibitor &"
+
+
+# =========================================
+#               RIGHT MODULES
+# =========================================
+
+# --- GROUP: PPD & SCX ---
+
+# 7. power-profiles-daemon
+[[end]]
+type = "script"
+mode = "poll"
+interval = 2000
+cmd = "profile=$(powerprofilesctl get 2>/dev/null); if [ \"$profile\" = \"performance\" ]; then echo '󰓅'; else echo '󰾆'; fi"
+
+# 8. custom/scx
+[[end]]
+type = "script"
+mode = "poll"
+interval = 2000
+cmd = "~/.config/waybar/scripts/scx-status.sh | jq -r '.text // empty' 2>/dev/null || ~/.config/waybar/scripts/scx-status.sh"
+on_click_left = "~/.config/waybar/scripts/scx-cycle.sh"
+on_click_right = "scxctl restart"
+
+# --- GROUP: CPU, TEMP, RAM ---
+
+# 9. cpu & memory (Native sys_info)
+[[end]]
+type = "sys_info"
+interval = 2000
+format = [
+  "󰍛 {cpu_percent}%",
+  " {memory_used}G/{memory_total}G {memory_percent}%"
+]
+
+# 10. temperature (Scripted to avoid coretemp path crashing on Zen 4)
+[[end]]
+type = "script"
+mode = "poll"
+interval = 2000
+cmd = "sensors | awk '/^Tctl:/ {print \"󰔏 \" $2}' | sed 's/+//'"
+
+# --- GROUP: GPU & VRAM ---
+
+# 11. custom/gpu-icon & custom/gpu
+[[end]]
+type = "script"
+mode = "poll"
+interval = 2000
+cmd = "gpu-usage-waybar | jq -r '.text // empty' 2>/dev/null || echo '󰢮'"
+on_click_left = "foot -e amdgpu_top"
+
+# --- GROUP: NVME ---
+
+# 12. disk (Root Partition)
+[[end]]
+type = "script"
+mode = "poll"
+interval = 60000
+cmd = "df -h / | awk 'NR==2 {print \"󰋊 \" $5}'"
+
+# 13. custom/nvme-health
+[[end]]
+type = "script"
+mode = "poll"
+interval = 3600000
+cmd = "~/.config/waybar/scripts/nvme-health.sh | jq -r '.text // empty' 2>/dev/null || ~/.config/waybar/scripts/nvme-health.sh"
+
+# 14. custom/disk-read & disk-write
+[[end]]
+type = "script"
+mode = "poll"
+interval = 2000
+cmd = "echo \"󰇚 $(~/.config/waybar/scripts/disk-io.sh read)/s  󰕒 $(~/.config/waybar/scripts/disk-io.sh write)/s\""
+
+# --- GROUP: NETWORK ---
+
+# 15. network (Native Network Manager)
+[[end]]
+type = "network_manager"
+icon_size = 18
+
+# --- GROUP: BLUETOOTH ---
+
+# 16. bluetooth
+[[end]]
+type = "script"
+mode = "poll"
+interval = 5000
+cmd = "bluetoothctl info | grep -q 'Connected: yes' && echo '󰂱' || echo '󰂯'"
+on_click_left = "overskride"
+
+# --- GROUP: BACKLIGHT, MIC & VOLUME ---
+
+# 17. backlight
+[[end]]
+type = "script"
+mode = "poll"
+interval = 2000
+cmd = "brightnessctl -m | awk -F, '{print \"󰃠 \" $4}'"
+
+# 18. pulseaudio
+[[end]]
+type = "volume"
+format = "{icon} {volume}%"
+
+# 19. pulseaudio#microphone
+[[end]]
+type = "script"
+mode = "poll"
+interval = 2000
+cmd = "wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q MUTED && echo '' || wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print \" \" $2*100 \"%\"}'"
+
+# --- GROUP: BATTERY ---
+
+# 20. battery
+[[end]]
+type = "battery"
+format = "{icon} {percentage}%"
+
+# 21. battery#power (Pulling wattage directly from hardware)
+[[end]]
+type = "script"
+mode = "poll"
+interval = 2000
+cmd = "cat /sys/class/power_supply/BAT*/power_now 2>/dev/null | awk '{printf \"󰂃 %.1fW\", $1/1000000}' || true"
+
+# --- CUSTOM WLOGOUT ---
+
+# 22. wlogout
+[[end]]
+type = "script"
+mode = "poll"
+interval = 86400000
+cmd = "echo ' 󰐥 '"
+on_click_left = "wlogout -b 4 -T 400 -B 400 -L 300 -R 300"

@@ -1,0 +1,19 @@
+{
+    "colorscheme": "catppuccin-mocha",
+    "autosu": true,
+    "clipboard": "terminal",
+    "cursorline": true,
+    "mkparents": true,
+    "mouse": true,
+    "rmtrailingws": true,
+    "savecursor": true,
+    "saveundo": true,
+    "scrollbar": true,
+    "statusline": true,
+    "tabsize": 4,
+    "tabstospaces": true,
+    "softwrap": true,
+    "wordwrap": true,
+    "infobar": true,
+    "statusline": false
+}

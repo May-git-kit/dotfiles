@@ -1,0 +1,27 @@
+# Display name in system logs
+[general]
+# Set to true to see what's triggering the inhibitor in your logs
+debug = false
+
+[pipewire]
+# How often to check the audio state (in seconds)
+check_interval = 5
+
+# Which nodes to track. "Output" usually covers most use cases.
+# You can also use "Input" if you want to keep the screen on while your mic is active.
+node_types = ["Audio/Sink"]
+
+# Rules for when to inhibit
+[[pipewire.rules]]
+# Inhibit when any application is playing audio
+name = ".*"
+state = "running"
+
+# Optional: Only inhibit for specific apps (uncomment to use)
+# [[pipewire.rules]]
+# name = "firefox"
+# state = "running"
+
+[wayland]
+# This is the "reason" sent to Niri/Wayland for the idle inhibition
+reason = "Audio playback"

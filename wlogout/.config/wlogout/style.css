@@ -1,0 +1,47 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+}
+
+window {
+    background-color: rgba(30, 30, 46, 0.2); /* Semi-transparent Mocha */
+}
+
+button {
+    background-color: #313244;
+    border: 5px solid #45475a;
+    border-radius: 38px;
+    margin: 30px;
+    /*transition: 200ms all ease-in-out;*/
+
+    /* Makes the text invisible so only the icon shows */
+    color: transparent;
+
+    /* Centers and sizes the icons */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
+}
+
+button:hover {
+    background-color: #000000; /* Mocha Blue */
+    border: 5px solid #f0f0f0;
+}
+
+button#shutdown:hover {
+    background-color: #f38ba8; /* Mocha Red */
+    border: 5px solid #f38ba8;
+}
+
+/* --- Mapping the Native Icons --- */
+#lock {
+    background-image: image(url("/usr/share/wlogout/icons/lock.png"));
+}
+#suspend {
+    background-image: image(url("/usr/share/wlogout/icons/suspend.png"));
+}
+#reboot {
+    background-image: image(url("/usr/share/wlogout/icons/reboot.png"));
+}
+#shutdown {
+    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"));
+}
