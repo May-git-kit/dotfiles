@@ -9,3 +9,4 @@ tmp_files/
 clipboard_history.json
 fish_*
 nvim/
+__pycache__/
