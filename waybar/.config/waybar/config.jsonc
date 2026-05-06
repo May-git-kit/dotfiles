@@ -6,8 +6,9 @@
 
     "spacing": 0, //gap between modules
     "margin-top": 2,
-    "margin-left": 4,
-    "margin-right": 4,
+    "margin-left": 8,
+    "margin-right": 8,
+    "margin-bottom": 1,
 
     "start_hidden": false,
     "modifier-reset": "press",
@@ -50,12 +51,12 @@
             "modules": ["custom/launcher", "custom/paru"]
     },
     "custom/launcher": {
-        "format": "<span size='130%'> </span>",
+        "format": "<span size='130%'></span>",
         "on-click": "fuzzel",
         "tooltip": false
     },
     "custom/paru": {
-        "format": "<span size='130%'>   </span>{}",
+        "format": "<span size='130%'>  </span>{}",
         "exec": "checkupdates 2>/dev/null | wc -l || echo '0'", // Kept on one line to avoid parsing errors
         "interval": 3600,
         "on-click": "foot -e paru -Syu",
@@ -118,13 +119,10 @@
     // =========================================
     "wlr/taskbar": {
         "format": "{icon}",
-        "icon-size": 24
-
-        ,
-        "icon-theme": "Papirus",
+        "icon-size": 44,
+        "icon-theme": "Adwaita",
         "tooltip-format": "{title}",
         "on-click": "activate",
-        "on-click-middle": "close",
         "on-click-right": "close",
         "ignore-list": [ "fuzzel", "waybar" ]
     },
@@ -204,15 +202,15 @@
         "tooltip": true,
         "format-icons":
         {
-            "default": "󰾅 ",
-            "performance": "󰓅 ",
-            "balanced": "󰾅 ",
-            "power-saver": "󰾆 "
+            "default": "󰾅",
+            "performance": "󰓅",
+            "balanced": "󰾅",
+            "power-saver": "󰾆"
         }
     },
 
     "cpu": {
-        "format": "<span size='140%'> </span> {usage}% ",
+        "format": "<span size='140%'> </span>{usage}% ",
         "interval":2,
         "tooltip":false,
         "states":
@@ -236,7 +234,7 @@
     },
 
     "memory": {
-        "format": "<span size='140%'>  </span> {used:0.1f}G/{total:0.1f}G<span size='150%'> 󱨂</span> {percentage}%",
+        "format": "<span size='140%'>  </span> {percentage}% {used:0.1f}G/{total:0.1f}G",
         "interval":2,
         "states":
         {
@@ -250,7 +248,7 @@
     "network": {
         "format-wifi": "<span size='150%'>{icon}</span> {frequency}",
         "format-ethernet": "<span size='150%'>󰈁</span>",
-        "format-disconnected": "󰤮 ",
+        "format-disconnected": "<span size='150%'>󰤮</span>",
         "tooltip": true,
         "tooltip-format-wifi": "{essid} {frequency}GHz Signal: {signalStrength}%",
         "max-length": 30,
@@ -265,7 +263,7 @@
     },
 
     "disk": {
-        "format": "<span size='150%'> </span>",
+        "format": "<span size='150%'></span>",
         "states":
         {
             "warning": 50,
@@ -296,7 +294,7 @@
         "scroll-step": 1
     },
     "pulseaudio": {
-        "format": "<span size='140%'>{icon}</span> {volume}%",
+        "format": "<span size='140%'>{icon}</span>{volume}%",
         "format-muted": "  {volume}%",
         "format-bluetooth": "󰂰 {volume}%",
         "format-icons":

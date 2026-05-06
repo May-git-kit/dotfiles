@@ -55,7 +55,7 @@ window#waybar {
     border: 2px solid rgba(255,255,255,0.4);
     border-radius: 8px;
     padding: 0px 0px; /* Reduced vertical padding slightly to balance height */
-    margin: 0px 0px;
+    margin: 1px 0px;
     transition: all 0.2s ease;
 }
 
@@ -75,11 +75,15 @@ window#waybar {
 #custom-launcher {
     color: #89b4fa;
     padding-left:5px;
-    padding-right:0px;
+    padding-right:5px;
 }
 
 /* Paru Updater */
-#custom-paru { color: pink; font-size: 17px; font-weight:500; }
+#custom-paru {
+    color: #EB67A2;
+    font-size: 17px;
+    font-weight:500;
+}
 
 /* Niri Workspaces */
 #workspaces button {
@@ -89,7 +93,7 @@ window#waybar {
     transition: all 0.2s ease;
 }
 #workspaces button.active {
-    color: pink;
+    color: #EB67A2;
     font-weight: 900;
 }
 #workspaces button:hover {
@@ -102,7 +106,7 @@ window#waybar {
 /* WLR Taskbar (Middle App Icons) */
 #taskbar button {
     background: transparent; /* No background pill */
-    padding: 0px 14px;          /* Space between icons */
+    padding: 0px 10px;          /* Space between icons */
     margin: 0px;
     border-radius: 0;
     min-height: 0;            /* Allow it to shrink */
@@ -111,9 +115,7 @@ window#waybar {
 
 /* --- 3. Make Icons Bigger --- */
 #taskbar button image {
-    margin: 0px 3px;
-    /* This scales the actual icon. Adjust the scale or use min-width/height */
-    -gtk-icon-transform: scale(2.2);
+    -gtk-icon-transform: scale(1.0);
 }
 
 /* --- 4. Active/Hover State --- */
@@ -134,12 +136,17 @@ window#waybar {
 
 /* Wlogout Power Button */
 #custom-wlogout {
-    color: #f38ba8;
+    color: #EB1776;
     padding-left: 17px;
-    padding-right: 21px;
+    padding-right: 17px;
     margin-right: 5px;
 }
-
+#power-profiles-daemon {
+    padding-right:1px;
+}
+#network {
+    padding-right:1px;
+}
 /* -----------------------------------------------------
  * DYNAMIC HARDWARE COLORS (Warnings & Criticals)
  * ----------------------------------------------------- */
@@ -159,5 +166,5 @@ window#waybar {
     font-weight:600;
 }*/
 #bluetooth{
-    color:lightblue;
+    color:#35C3E5;
 }
