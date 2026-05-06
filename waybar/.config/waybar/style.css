@@ -52,7 +52,7 @@ window#waybar {
 .modules-center > widget > * {
     background-color: transparent;
     color: #cdd6f4;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.4);
     border-radius: 8px;
     padding: 0px 0px; /* Reduced vertical padding slightly to balance height */
     margin: 0px 0px;
@@ -122,10 +122,8 @@ window#waybar {
     background-color: rgba(255, 255, 255, 0.25); /* Very faint highlight */
     border-radius: 6px;
 }
-
-#taskbar button :hover {
-    -gtk-icon-transform: scale(3);
-    /* Pop effect on hover */
+#taskbar.empty {
+    border: 0px;
 }
 
 /* Idle Inhibitor (Caffeine) */
@@ -160,3 +158,6 @@ window#waybar {
     font-size:16px;
     font-weight:600;
 }*/
+#bluetooth{
+    color:lightblue;
+}
