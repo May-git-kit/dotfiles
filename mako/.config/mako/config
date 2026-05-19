@@ -14,13 +14,13 @@ icons=1
 max-icon-size=64
 
 # Catppuccin Mocha Colors
-background-color=#000000
+background-color=#00000010
 text-color=#cdd6f4
 border-color=#ffffff40
 progress-color=over #313244
 
 # Behavior
-default-timeout=2000
+default-timeout=3000
 ignore-timeout=0
 layer=overlay
 anchor=top-right

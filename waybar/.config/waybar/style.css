@@ -8,7 +8,6 @@
     border-radius: 0;
     margin: 0;
     padding: 0;
-    /* Removed min-height: 0; so containers stop collapsing */
 }
 
 window#waybar {
@@ -21,53 +20,54 @@ window#waybar {
 /*.modules-left,
 .modules-center,
 .modules-right {
-    background-color: transparent;
-    border: 0px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
+    background-color: rgba(0,0,0,0.2);
+    border: 0px solid rgba(0,0,0,0.4);
+    border-radius: 16px;
     padding: 0px;
-    margin: 2px;
-}
-*/
+    margin: 0px;
+}*/
+
 /* -----------------------------------------------------
  * INNER PILLS (The Secondary Layer)
  * ----------------------------------------------------- */
 .modules-left > widget > * {
-    background-color: transparent;
+    background-color: rgba(0,0,0,0.2);
     color: #cdd6f4;
-    border: 1px solid rgba(255,255,255,0.18);
-    border-radius: 10px;
-    padding: 6px 12px;
-    margin: 6px 5px;
-    transition: all 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 21px;
+    padding: 7px 10px;
+    margin: 3px 5px;
+    transition: all 0.2s ease;
 }
 .modules-right > widget > * {
-    background-color: transparent;
+    background-color: rgba(0,0,0,0.2);
     color: #cdd6f4;
-    border: 1px solid rgba(255,255,255,0.18);
-    border-radius: 10px;
-    padding: 6px 12px;
-    margin: 6px 5px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 21px;
+    padding: 7px 10px;
+    margin: 3px 5px;
     transition: all 0.4s ease;
-}
+    }
 .modules-center > widget > * {
-    background-color: transparent;
+    background-color: rgba(0,0,0,0.25);
     color: #cdd6f4;
-    border: 2px solid rgba(255,255,255,0.4);
-    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 21px;
     padding: 0px 0px; /* Reduced vertical padding slightly to balance height */
-    margin: 1px 0px;
+    margin: 3px 5px;
     transition: all 0.2s ease;
 }
 
 /* -----------------------------------------------------
  * HOVER EFFECTS
  * ----------------------------------------------------- */
-/*.modules-left > widget > *:hover,
+.modules-left > widget > *:hover,
 .modules-center > widget > *:hover,
 .modules-right > widget > *:hover {
-    background-color: transparent;
+    background-color: rgba(255,255,255,0.16);
+    border:1px solid rgba(255,255,255,0.3)
 }
-*/
+
 /* -----------------------------------------------------
  * SPECIFIC COMPONENT COLORS & TWEAKS
  * ----------------------------------------------------- */
@@ -105,47 +105,76 @@ window#waybar {
 
 /* WLR Taskbar (Middle App Icons) */
 #taskbar button {
-    background: transparent; /* No background pill */
-    padding: 0px 10px;          /* Space between icons */
-    margin: 0px;
-    border-radius: 0;
-    min-height: 0;            /* Allow it to shrink */
+    background: transparent;
+    padding: 0px 8px;
+    margin: 0px 0px;
+    border-radius: 20px;
+    min-height: 0px;
     transition: all 0.3s ease;
 }
-
-/* --- 3. Make Icons Bigger --- */
 #taskbar button image {
     -gtk-icon-transform: scale(1.0);
 }
-
-/* --- 4. Active/Hover State --- */
-/* Instead of a pill, maybe a subtle glow or color change */
 #taskbar button.active {
-    background-color: rgba(255, 255, 255, 0.25); /* Very faint highlight */
-    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
 }
 #taskbar.empty {
     border: 0px;
+    background:transparent;
 }
 
-/* Idle Inhibitor (Caffeine) */
-#idle_inhibitor.activated { color: pink; }
+#idle_inhibitor.activated {
+    color: pink;
+}
 
-/* Privacy Indicator */
-#privacy { color: #f38ba8; }
+#privacy {
+    color: #f38ba8;
+}
 
-/* Wlogout Power Button */
 #custom-wlogout {
     color: #EB1776;
     padding-left: 17px;
     padding-right: 17px;
     margin-right: 5px;
 }
+
 #power-profiles-daemon {
     padding-right:1px;
 }
+/*
 #network {
     padding-right:1px;
+    color: #ff62d4
+}
+#disk {
+    color:#45dced
+}
+#pulseaudio {
+    color:#ebdf38
+}
+*/
+#bluetooth{
+    color:#35C3E5;
+}
+window#waybar.tooltip {
+    background-color: transparent;
+    text-shadow: none;
+    box-shadow: none;
+    border: none;
+}
+tooltip {
+  all:unset;
+  background-color: #1e1e2e;
+  border: 2px solid #cba6f7;
+  border-radius: 6px;
+}
+
+tooltip label {
+  color: #cdd6f4;
+  padding: 5px;
+  font-family: "JetBrains Mono", "Roboto";
+  font-size: 15px;
 }
 /* -----------------------------------------------------
  * DYNAMIC HARDWARE COLORS (Warnings & Criticals)
@@ -159,12 +188,10 @@ window#waybar {
 }
 
 #battery.charging, #battery.plugged {
-    color: #a6e3a1;
+    color: #55e066;
 }
 /*#cpu,#memory,#temperature,#disk,#battery{
     font-size:16px;
     font-weight:600;
 }*/
-#bluetooth{
-    color:#35C3E5;
-}
+

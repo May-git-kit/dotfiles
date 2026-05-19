@@ -1,25 +1,26 @@
 window {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.3);
     border-radius: 28px;
-    color: #eeeeee;
     border: 5px solid rgba(255,255,255, 0.4);
     font-family: "Segoe UI Variable", "Inter", sans-serif;
  }
 
 /* search entry */
 entry {
-    background-color: rgba(0, 0, 0, 0.2)
+    background-color: rgba(255,255,255, 0.15);
+    border: 4px solid rgba(255, 255, 255, 0.4);
+    border-radius: 14px;
 }
 
 button, image {
     background: none;
     border: none;
     border-radius: 8px;
-    padding: 3px 2px;
+    padding: 3px 0px;
     margin: 0px;
     font-size:11px;
+    font-weight:bold;
 }
-
 button:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border: 0px solid rgba(255, 255, 255, 0.3);

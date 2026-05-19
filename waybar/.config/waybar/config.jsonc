@@ -119,7 +119,7 @@
     // =========================================
     "wlr/taskbar": {
         "format": "{icon}",
-        "icon-size": 44,
+        "icon-size": 34,
         "icon-theme": "Adwaita",
         "tooltip-format": "{title}",
         "on-click": "activate",
@@ -257,7 +257,7 @@
     },
 
     "network#speed": {
-        "format": "  <span size='140%'> </span>{bandwidthDownBytes:>3} <span size='140%'> </span>{bandwidthUpBytes:>3}",
+        "format": "  <span size='140%'></span>{bandwidthDownBytes:>2} <span size='140%'></span>{bandwidthUpBytes:>2}",
         "interval": 1,
         "tooltip": false
     },
